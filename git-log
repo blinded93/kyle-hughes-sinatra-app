@@ -1,0 +1,36 @@
+0000000000000000000000000000000000000000 1f2ec46c2a5ead7ce55ab969aa231ffc2a2d3d50 blinded93 <blinded93@gmail.com> 1498776397 -0700	commit (initial): First commit, created app file structure.
+1f2ec46c2a5ead7ce55ab969aa231ffc2a2d3d50 b4cd730662d22951864bb2ee725c3b0b8a5e1f62 blinded93 <blinded93@gmail.com> 1498778827 -0700	commit: created migrations/db
+b4cd730662d22951864bb2ee725c3b0b8a5e1f62 36cddf7b801d322ebd681f53849941f3dfee6821 blinded93 <blinded93@gmail.com> 1498778879 -0700	commit: removed 'open-library' as it was included by mistake
+36cddf7b801d322ebd681f53849941f3dfee6821 4addbc451ab082f5f10192b449335159541dd4c5 blinded93 <blinded93@gmail.com> 1498778971 -0700	commit: Created basic model classes
+4addbc451ab082f5f10192b449335159541dd4c5 b161be2e616445c06d556bb73c2c523f4e037e84 blinded93 <blinded93@gmail.com> 1498779008 -0700	commit: Created basic controller classes
+b161be2e616445c06d556bb73c2c523f4e037e84 d175bbecb2a6c578b744461a955c2f352da35b42 blinded93 <blinded93@gmail.com> 1498780495 -0700	commit: Created basic index/layout page
+d175bbecb2a6c578b744461a955c2f352da35b42 7dedb45f85337e638d0d9d1b5210080a596ba4aa blinded93 <blinded93@gmail.com> 1498780571 -0700	commit: Added signup and welcome page routes to their respective controller class
+7dedb45f85337e638d0d9d1b5210080a596ba4aa c9da1c848e22ac65667c08087a4e1d604c825cd4 blinded93 <blinded93@gmail.com> 1498781252 -0700	commit: Created login controller and view.
+c9da1c848e22ac65667c08087a4e1d604c825cd4 03b494709bfdf3e26fbd2d5b4ec12defdc9400c1 blinded93 <blinded93@gmail.com> 1498781927 -0700	commit: Created recipe home view/controller
+03b494709bfdf3e26fbd2d5b4ec12defdc9400c1 b793471841d3a0c2c3778aaa457aa3678eb6fa7e blinded93 <blinded93@gmail.com> 1498782327 -0700	commit: Added create, edit and show recipe views.
+b793471841d3a0c2c3778aaa457aa3678eb6fa7e 9f8fbd6f2e732834049b90ca2a82333197e3852e blinded93 <blinded93@gmail.com> 1498786159 -0700	commit: Fixed inheritance mistake and began new recipe action/view
+9f8fbd6f2e732834049b90ca2a82333197e3852e ae67411ccf7ccf880f4942e71842af8056360333 blinded93 <blinded93@gmail.com> 1498786207 -0700	commit: Created new recipe form
+ae67411ccf7ccf880f4942e71842af8056360333 2b881fcd6082a543c6a6753d59e4eacd80f434b8 blinded93 <blinded93@gmail.com> 1498786922 -0700	commit: added line breaks on form
+2b881fcd6082a543c6a6753d59e4eacd80f434b8 5b28fb160d7bdf8a9e2fb37813f2cb1c9afaa62b blinded93 <blinded93@gmail.com> 1498787049 -0700	commit: Changed recipe model from a belongs_to relationship to a has_and_belongs_to_many; also adding user_id col to table and creating user_recipes join table
+5b28fb160d7bdf8a9e2fb37813f2cb1c9afaa62b 506863e854b3d74555b6e830f85d00f9e3625874 blinded93 <blinded93@gmail.com> 1498792881 -0700	commit: added logout action
+506863e854b3d74555b6e830f85d00f9e3625874 93f5ea471dc4d4766c8fd6cedbca5e91a779f615 blinded93 <blinded93@gmail.com> 1498792966 -0700	commit: finished /recipe action
+93f5ea471dc4d4766c8fd6cedbca5e91a779f615 485855d3bcc94b03c6ed1bf799413b3570725440 blinded93 <blinded93@gmail.com> 1498793063 -0700	commit: added logout button to recipe.erb
+485855d3bcc94b03c6ed1bf799413b3570725440 06fa4aa5e98149867d430c946b012ac823e0d623 blinded93 <blinded93@gmail.com> 1498794156 -0700	commit: Finished edit controller action and view form
+06fa4aa5e98149867d430c946b012ac823e0d623 bcf3bf14140eb9ba14dbd58b2222c4d4ec67412b blinded93 <blinded93@gmail.com> 1498847925 -0700	commit: reverted recipes back to a belongs_to user state.
+bcf3bf14140eb9ba14dbd58b2222c4d4ec67412b 1998f1db0637dae9f7e81a31701b643b4b7a6388 blinded93 <blinded93@gmail.com> 1498852549 -0700	commit: Added helper methods
+1998f1db0637dae9f7e81a31701b643b4b7a6388 995406787c9de892090d9c9c29f8b9670967e060 blinded93 <blinded93@gmail.com> 1498852763 -0700	commit: Added Show Recipe action and link on recipe page.
+995406787c9de892090d9c9c29f8b9670967e060 9e153de34ab22aab0bf59e6e55d40ee9a0670afd blinded93 <blinded93@gmail.com> 1498853293 -0700	commit: added user_id column to recipes table
+9e153de34ab22aab0bf59e6e55d40ee9a0670afd 0d4e23d9c939e6178d9d7d4339e4fc073bd87c08 blinded93 <blinded93@gmail.com> 1498853338 -0700	commit: started recipe show view page
+0d4e23d9c939e6178d9d7d4339e4fc073bd87c08 1a1ffc3878529158801ab00d7724b3a135433b0a blinded93 <blinded93@gmail.com> 1498856264 -0700	commit: Creating patch action for recipe editting
+1a1ffc3878529158801ab00d7724b3a135433b0a 21706a359a7f22331a22b93425dae8fc946875cb blinded93 <blinded93@gmail.com> 1498856817 -0700	commit: added current information to edit recipe view
+21706a359a7f22331a22b93425dae8fc946875cb 75b94ffc8a8297d7eb629c9607cce909296ce14a blinded93 <blinded93@gmail.com> 1498856900 -0700	commit: Changed helper method
+75b94ffc8a8297d7eb629c9607cce909296ce14a 4a97adea1237c1b150789d56a86a4fb3680622ef blinded93 <blinded93@gmail.com> 1498856988 -0700	commit: Finished Show page lists and changed 'instructions' to 'directions' to keep all pages consistent
+4a97adea1237c1b150789d56a86a4fb3680622ef eebe3f3001f823a997ccc4b3076563223b7370b6 blinded93 <blinded93@gmail.com> 1498864225 -0700	commit: Changed .new method to collection.build
+eebe3f3001f823a997ccc4b3076563223b7370b6 110192a0deb95619fad3cba573146fa2f1e62ea3 blinded93 <blinded93@gmail.com> 1498865696 -0700	commit: added validations to recipe's attributes and a few line breaks in login view
+110192a0deb95619fad3cba573146fa2f1e62ea3 0a5b09d73186e3d7ad29d49cd5c8b105583072df blinded93 <blinded93@gmail.com> 1498866787 -0700	commit: added menu to layout
+0a5b09d73186e3d7ad29d49cd5c8b105583072df 982d683406cc619d3e6e3b4af398f9f7a5ff08e4 blinded93 <blinded93@gmail.com> 1498867883 -0700	commit: aligned the menu to the top of the cell on layout, removed logout from main page and added an edit button to the recipe show page.
+982d683406cc619d3e6e3b4af398f9f7a5ff08e4 5c35478c6de6b11720dda5e499aafe80609b50f9 blinded93 <blinded93@gmail.com> 1498868966 -0700	commit: changed form elements name to nest information into it's own hash in params
+5c35478c6de6b11720dda5e499aafe80609b50f9 d9ea79fbd89c1fe361983ac448d2c78715405467 blinded93 <blinded93@gmail.com> 1498869070 -0700	commit: began to add delete action and view button on show page. updated edit action to reflect form nested hash change.
+d9ea79fbd89c1fe361983ac448d2c78715405467 aeff3c11dcfc215f51e51aa2d3a357f3a66eb6dc blinded93 <blinded93@gmail.com> 1498871211 -0700	commit: added helper method 'owned?' and added instance variable ||= to current_user
+aeff3c11dcfc215f51e51aa2d3a357f3a66eb6dc 3e9226416e58269c631a51eb06a11dbd6524f9f2 blinded93 <blinded93@gmail.com> 1498871424 -0700	commit: finished delete recipe action
+3e9226416e58269c631a51eb06a11dbd6524f9f2 1f6ad2fa8fa4df99ba179d90442860f7e6e80673 blinded93 <blinded93@gmail.com> 1498871472 -0700	commit: added form to show page and linked with delete button.
