@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <% if logged_in? %>
+    <body>
+      <table>
+        <tr>
+          <td colspan=2 width=100% height='75px'>
+
+          </td>
+        </tr>
+        <tr>
+          <td width=30% style="vertical-align: top">
+            <ul>
+              <li><a href='/recipes'>Home</a></li>
+              <li><a href='/recipes/new'>Create Recipe</a></li>
+              <li><a href='/friends'>Friends</a></li>
+              <li><a href='/logout'>Logout</a></li>
+            </ul>
+          </td>
+          <td width=70%>
+            <%= yield %>
+          </td>
+        </tr>
+      </table>
+  <% else %>
+    <body>
+      <%= yield %>
+  <% end %>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<h1><%= @recipe.name %></h1>
+  <a href='/recipes/<%= @recipe.id %>/edit'><button >Edit</button></a>
+  |
+  <a href='/recipes/<%= @recipe.id %>/delete'><button form="delete">Delete</button></a>
+  <ul>
+    <li>Prep Time: <%= @recipe.prep_time %></li>
+    <li>Cook Time: <%= @recipe.cook_time %></li>
+    <li>Total Time: <%= @recipe.total_time %></li>
+  </ul>
+  <h4>Ingredients</h4>
+    <ul>
+      <% @recipe.ingredients_array.each do |ingredient| %>
+        <li><%= ingredient %></li>
+        <% end %>
+    </ul>
+  <h4>Directions</h4>
+    <ol>
+      <% @recipe.directions_array.each do |step| %>
+        <li><%= step %></li>
+      <% end %>
+    </ol>
+
+
+
+    <form id='delete' method='post' action='/recipes/<%= @recipe.id %>/delete'>
+      <input type='hidden' name='_method' value='delete'>
+    </form>
