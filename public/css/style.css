@@ -1,1 +1,32 @@
 /*          -----Lists-----           */
+td#menu li {
+  padding: 5px;
+  margin: 5px;
+}
+ul.menu {
+  list-style-type: none;
+}
+
+
+
+
+
+
+
+/*          -----Tables-----           */
+table#layout {
+  table-layout: fixed;
+  width: 750px;
+  border: none;
+}
+
+td#title {
+  column-span: 2;
+  width: 100%;
+  height: 75px;
+}
+
+td#menu {
+  width: 150px;
+  vertical-align: top;
+}
