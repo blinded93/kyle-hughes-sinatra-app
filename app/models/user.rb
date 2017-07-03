@@ -12,4 +12,16 @@ class User < ActiveRecord::Base
     association_foreign_key: :user_friend_id
 
   has_many :recipes
+
+  def add_friend(friend)
+    self.friends << friend
+    friend.friends << self
+    friend
+  end
+
+  def remove_friend(friend)
+    self.friends.delete(friend)
+    friend.friends.delete(self)
+    friend
+  end
 end
