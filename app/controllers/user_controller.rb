@@ -1,5 +1,6 @@
 class UserController < ApplicationController
 
+  #           -----Friends-----
   #           -----Sign Up-----
   get '/signup' do
     redirect "/recipes" if logged_in?
