@@ -7,29 +7,27 @@
   </head>
   <% if logged_in? %>
     <body>
-      <table id='layout'>
-        <tr>
-          <td id='title'>
-            <span style='font-size: 50px;'>Welcome!</span>
-          </td>
-        </tr>
-        <tr>
-          <td id='menu'>
-            <ul class='menu'>
-              <li><a href='/recipes'>Home</a></li>
-              <li><a href='/recipes/new'>Create Recipe</a></li>
-              <li><a href='/friends'>Friends</a></li>
-              <li><a href='/logout'>Logout</a></li>
-            </ul>
-          </td>
-          <td>
-            <%= yield %>
-          </td>
-        </tr>
-      </table>
+      <div style='white-space: nowrap'>
+        <div id='white-box'>
+        </div>
+        <div id='title'>
+          <h1>comestible methods</h1>
+        </div>
+        <br>
+        <div id='menu'>
+          <div class='menu'><a href='/recipes'>recipes</a></div>
+          <div class='menu'><a href='/friends'>friends</a></div>
+          <div class='menu'><a href='/logout'>logout</a></div>
+        </div>
+        <div id='content'>
+          <%= yield %>
+        </div>
+      </div>
   <% else %>
     <body>
-      <%= yield %>
+      <div class='outer'>
+        <%= yield %>
+      </div>
   <% end %>
     </body>
 </html>
