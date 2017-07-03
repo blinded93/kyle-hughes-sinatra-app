@@ -1,0 +1,14 @@
+<div>
+  <h3><%= @friend.username %></h3>
+    <ul>
+      <h5>Recipes</h5>
+        <% @friend.recipes.each do |recipe| %>
+          <li><a href='/recipes/<%= recipe.id %>'><%= recipe.name %></a></li>
+          <% end %>
+
+      <h5>Friends</h5>
+        <% @friend.friends.each do |friend| %>
+          <li><a href='/friend/<%= friend.id %>'><%= friend.username %></a>s</li>
+        <% end %>
+    </ul>
+</div>
