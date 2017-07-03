@@ -1,6 +1,22 @@
 class UserController < ApplicationController
 
   #           -----Friends-----
+  get  '/friends' do
+    redirect_if_not_logged_in
+
+    @user = current_user
+    erb :'/users/friends'
+  end
+
+  get '/friends/:id' do
+    redirect_if_not_logged_in
+
+    @user = current_user
+    @friend = User.find(params[:id])
+    erb :'/users/friend_show'
+  end
+
+
   #           -----Sign Up-----
   get '/signup' do
     redirect "/recipes" if logged_in?
