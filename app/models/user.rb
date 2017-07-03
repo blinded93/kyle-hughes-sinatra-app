@@ -14,14 +14,22 @@ class User < ActiveRecord::Base
   has_many :recipes
 
   def add_friend(friend)
-    self.friends << friend
-    friend.friends << self
-    friend
+    if !self.friends.include?(friend)
+      self.friends << friend
+      friend.friends << self
+      friend
+    else
+      false
+    end
   end
 
   def remove_friend(friend)
-    self.friends.delete(friend)
-    friend.friends.delete(self)
-    friend
+    if self.friends.include?(friend)
+      self.friends.delete(friend)
+      friend.friends.delete(self)
+      friend
+    else
+      false
+    end
   end
 end
