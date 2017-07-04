@@ -8,7 +8,11 @@
 
       <h5>Friends</h5>
         <% @friend.friends.each do |friend| %>
-          <li><a href='/friend/<%= friend.id %>'><%= friend.username %></a>s</li>
+          <% if friend.id == @user.id %>
+            <li><a href='/recipes'><%= friend.username %></a></li>
+          <% else %>
+            <li><a href='/friends/<%= friend.id %>'><%= friend.username %></a></li>
+          <% end %>
         <% end %>
     </ul>
 </div>
