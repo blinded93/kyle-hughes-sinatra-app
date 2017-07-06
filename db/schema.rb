@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630185137) do
+ActiveRecord::Schema.define(version: 20170706201505) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "user_friend_id"
     t.index ["user_friend_id", "user_id"], name: "index_friendships_on_user_friend_id_and_user_id", unique: true
     t.index ["user_id", "user_friend_id"], name: "index_friendships_on_user_id_and_user_friend_id", unique: true
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "owner_id"
+    t.integer "sender_id"
+    t.string "content"
   end
 
   create_table "recipes", force: :cascade do |t|
