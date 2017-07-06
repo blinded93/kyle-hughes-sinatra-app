@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     association_foreign_key: :user_friend_id
 
   has_many :recipes
+  has_many :messages
 
   def add_friend(friend)
     if !self.friends.include?(friend)
