@@ -8,6 +8,31 @@ class UserController < ApplicationController
     erb :'/users/friends'
   end
 
+  get '/friends/find' do
+    redirect_if_not_logged_in
+
+    @user = current_user
+    @users = User.all
+    erb :'/users/friend_find'
+  end
+
+  post '/friends' do
+    redirect_if_not_logged_in
+
+    if params[:query].include?("@")
+      @friend = User.find_by(email: params[:query])
+    else
+      @friend = User.find_by(username: params[:query])
+    end
+
+    if !@friend.nil?
+      redirect "/friends/#{@friend.id}"
+    else
+      flash[:nonexistant] = "I could not find what you were looking for."
+      redirect "/friends/find"
+    end
+  end
+
   get '/friends/:id' do
     redirect_if_not_logged_in
 
