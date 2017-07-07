@@ -31,5 +31,9 @@ class ApplicationController < Sinatra::Base
     def owned?
       current_user.id == @recipe.user.id
     end
+
+    def friends?
+      !!@user.friends.include?(@friend)
+    end
   end
 end
