@@ -1,6 +1,6 @@
 <div>
   <h3><%= @friend.username %></h3>
-  <% if !@user.friends.include?(@friend) %>
+  <% if !friends? %>
     <a href='/friends/add'><span>Add</span></a>
   <% else %>
     <a href='/friends/remove'><span>Remove</span></a>
