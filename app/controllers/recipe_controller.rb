@@ -36,14 +36,34 @@ class RecipeController < ApplicationController
     erb :'/recipes/show_recipe'
   end
 
+  #          -----Share Recipe-----
+  get '/recipes/:id/share' do
+    redirect_if_not_logged_in
+
+    @user = current_user
+    @recipe = Recipe.find(params[:id])
+    erb :'/recipes/share_recipe'
+  end
+
+  #          -----Save Recipe-----
+  patch '/recipes/:id/save' do
+    redirect_if_not_logged_in
+
+    @user = current_user
+    @recipe = Recipe.find(params[:id]).dup
+    hash = @recipe.attributes.to_options
+    @new_recipe = @user.recipes.create(hash)
+
+    redirect "/recipes/#{@new_recipe.id}"
+  end
+
   #          -----Edit Recipe-----
   get '/recipes/:id/edit' do
     redirect_if_not_logged_in
 
-
     @user = current_user
     @recipe = Recipe.find(params[:id])
-    if @user && @user.id == @recipe.user.id
+    if @user && owned?
       erb :'/recipes/edit_recipe'
     else
       flash[:not_owner] = "You do not own this."
@@ -86,7 +106,5 @@ class RecipeController < ApplicationController
       redirect "/recipes/#{@recipe.id}"
     end
   end
-
-
 
 end
