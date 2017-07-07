@@ -1,13 +1,14 @@
 class UserController < ApplicationController
 
-  #           -----Friends-----
+  #           -----List Friends-----
   get  '/friends' do
     redirect_if_not_logged_in
 
     @user = current_user
     erb :'/users/friends'
   end
-
+  
+  #          -----Find Friends-----
   get '/friends/find' do
     redirect_if_not_logged_in
 
@@ -33,6 +34,7 @@ class UserController < ApplicationController
     end
   end
 
+  #          -----Show Friend-----
   get '/friends/:id' do
     redirect_if_not_logged_in
 

@@ -92,7 +92,7 @@ class RecipeController < ApplicationController
     end
   end
 
-  #          -----Delete-----
+  #          -----Delete Recipe-----
   delete '/recipes/:id/delete' do
     redirect_if_not_logged_in
 
