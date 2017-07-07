@@ -1,0 +1,13 @@
+<div>
+  <h1>Share Recipe</h1>
+    <form method='post' action='/messages'>
+      <span>Recipe: <%= @recipe.name %></span>
+      <span>Share with:</span> <select name='owner_id'>
+        <% @user.friends.each do |friend| %>
+          <option value='<%= friend.username %>'><%= friend.username %></option>
+        <% end %>
+        </select><br>
+      <input type='text' name='message' placeholder='Personalized message'><br>
+      <input type='submit' value='Share'>
+    </form>
+</div>
