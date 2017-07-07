@@ -51,8 +51,8 @@ class RecipeController < ApplicationController
 
     @user = current_user
     @recipe = Recipe.find(params[:id]).dup
-    hash = @recipe.attributes.to_options
-    @new_recipe = @user.recipes.create(hash)
+    attrs = @recipe.attributes.to_options
+    @new_recipe = @user.recipes.create(attrs)
 
     redirect "/recipes/#{@new_recipe.id}"
   end

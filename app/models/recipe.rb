@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   belongs_to :user
-  
+
   validates_presence_of :name, on: :create
   validates_presence_of :ingredients, on: :create
   validates_presence_of :directions, on: :create
@@ -20,7 +20,4 @@ class Recipe < ActiveRecord::Base
   def directions_array
     self.directions.split("\r\n").collect{|step| step.strip}
   end
-
-
-
 end
