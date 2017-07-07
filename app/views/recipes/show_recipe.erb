@@ -1,8 +1,20 @@
 <div>
   <h1><%= @recipe.name %></h1>
-  <a href='/recipes/<%= @recipe.id %>/edit'><button >Edit</button></a>
-  |
-  <a href='/recipes/<%= @recipe.id %>/delete'><button form="delete">Delete</button></a>
+
+  <% if owned? %>
+    <a href='/recipes/<%= @recipe.id %>/edit'><button >Edit</button></a>
+    |
+    <a href='/recipes/<%= @recipe.id %>/delete'><button form="delete">Delete</button></a>
+    |
+    <a href='/recipes/<%= @recipe.id %>/share'><button>Share</button></a>
+
+  <% else %>
+  <form method='post' action='/recipes/<%= @recipe.id %>/save'>
+    <input type='hidden' name='_method' value='patch'>
+    <input type='hidden' name='recipe_id' value='<%= @recipe.id %>'>
+    <input type='submit' value='Save'>
+  </form>
+  <% end %>
   <ul>
     <li>Prep Time: <%= @recipe.prep_time %></li>
     <li>Cook Time: <%= @recipe.cook_time %></li>
@@ -22,9 +34,8 @@
     </ol>
 
 
-
     <form id='delete' method='post' action='/recipes/<%= @recipe.id %>/delete'>
       <input type='hidden' name='_method' value='delete'>
     </form>
-    
+
 </div>
