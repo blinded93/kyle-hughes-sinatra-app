@@ -7,7 +7,7 @@ class UserController < ApplicationController
     @user = current_user
     erb :'/users/friends'
   end
-  
+
   #          -----Find Friends-----
   get '/friends/find' do
     redirect_if_not_logged_in
@@ -32,6 +32,16 @@ class UserController < ApplicationController
       flash[:nonexistant] = "I could not find what you were looking for."
       redirect "/friends/find"
     end
+  end
+
+  #          -----Add Friend-----
+  post '/friends/:id/add' do
+    redirect_if_not_logged_in
+
+    friend = User.find(params[:owner_id])
+    message = friend.messages.build(params)
+    binding.pry
+    redirect "/friends"
   end
 
   #          -----Show Friend-----

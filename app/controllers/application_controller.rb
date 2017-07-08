@@ -36,5 +36,5 @@ class ApplicationController < Sinatra::Base
       !!@user.friends.include?(@friend)
     end
   end
-  
+
 end
