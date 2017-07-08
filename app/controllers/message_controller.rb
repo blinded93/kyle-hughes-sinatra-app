@@ -1,21 +1,31 @@
 class MessageController < ApplicationController
 
-  #          -----Show Messages-----
+  #          -----Messages-----
   get '/messages' do
     redirect_if_not_logged_in
 
-
+    @user = current_user
+    @messages = @user.messages.reverse
+    erb :'/messages/inbox'
   end
 
   #          -----Send Message-----
   post '/messages' do
-    binding.pry
     redirect_if_not_logged_in
 
-    @content = ""
+    owner = User.find(params[:owner_id])
+    message = owner.messages.create(params)
+    redirect "/messages"
+  end
+
+  #          -----Show Messages-----
+  get '/messages/:id' do
+    redirect_if_not_logged_in
+
     @user = current_user
-    @friend = params[:owner_id]
-    # @message = @friend.messages.build(owner_id: @friend.id, sender_id: @user.id)
+    @message = Message.find(params[:id])
+    @recipe = @message.recipe
+    erb :'/messages/show_message'
   end
 
 end
