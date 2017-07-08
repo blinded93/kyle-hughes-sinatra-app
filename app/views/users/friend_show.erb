@@ -1,9 +1,9 @@
 <div>
   <h3><%= @friend.username %></h3>
   <% if !friends? %>
-    <a href='/friends/add'><span>Add</span></a>
+    <button form='add'>Add</button>
   <% else %>
-    <a href='/friends/remove'><span>Remove</span></a>
+    <button>Remove</button>
   <% end %>
     <ul>
       <h5>Recipes</h5>
@@ -20,4 +20,10 @@
           <% end %>
         <% end %>
     </ul>
+
+    <form id='add' method='post' action='/friends/<%= @friend.id %>/add'>
+      <input type='hidden' name='owner_id' value='<%= @friend.id %>'>
+      <input type='hidden' name='sender_id' value='<%= @user.id %>'>
+      <input type='hidden' name='content' value='Someone wants to be your friend!'>
+    </form>
 </div>
