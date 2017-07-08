@@ -1,0 +1,21 @@
+<div>
+  <h1>inbox</h1>
+  <table>
+    <tr>
+      <th>date</th>
+      <th>from</th>
+      <th>title</th>
+    </tr>
+    <tr>
+      <% @messages.each do |message| %>
+        <% if !message.recipe.nil? %>
+          <td><%= message.created_at.strftime("%D~%H:%M") %></td>
+          <td><a href='/friends/<%= message.sender.id %>'><%= message.sender.username %></a></td>
+          <td><a href='/recipes/<%= message.recipe.id %>'><%= message.recipe_name_short %></a></td>
+          <td><button form='save'>Save</button></td>
+
+        <% end %>
+
+    </tr>
+  </table>
+</div>
