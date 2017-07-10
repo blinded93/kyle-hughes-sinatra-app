@@ -48,3 +48,8 @@ div.inner {
 div.outer {
   width: 100%
 }
+
+/*          -----Tables-----          */
+table th td {
+  border: 1px solid black;
+}

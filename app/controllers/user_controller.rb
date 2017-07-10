@@ -44,7 +44,7 @@ class UserController < ApplicationController
     Message.find(params[:message_id]).destroy
     redirect "/friends"
   end
-  
+
   #          -----Delete Friend-----
   delete '/friends/:id/delete' do
     redirect_if_not_logged_in

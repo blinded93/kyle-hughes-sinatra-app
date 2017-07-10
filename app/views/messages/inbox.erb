@@ -1,32 +1,37 @@
 <div>
   <h1>inbox</h1>
-  <button>delete selected</button>
-  <form
+  <form method='post' action='/messages/delete'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='delete selected'>
   <table>
     <tr>
+      <th></th>
       <th>date</th>
       <th>from</th>
       <th>title</th>
+      <th></th>
     </tr>
       <% @messages.each do |message| %>
         <% if message.content == "Share Recipe" %>
           <tr>
-            <td>
-
+            <td><input type='checkbox' name='message_ids[]' value='<%= message.id %>'></td>
             <td><%= message.created_at.strftime("%D~%H:%M") %></td>
             <td><a href='/friends/<%= message.sender_id %>'><%= message.sender.username %></a></td>
             <td><a href='/recipes/<%= message.recipe_id %>'><%= message.recipe_name_short %></a></td>
             <td>
-              <form id='save' method='post' action='/recipes/<%= message.recipe_id %>/save' <%= 'hidden' if owned_recipe?(message.recipe) %>>
-                <input type='hidden' name='_method' value='patch'>
-                <input type='hidden' name='recipe_id' value='<%= message.recipe_id %>'>
-                <input type='hidden' name='message_id' value='<%= message.id %>'>
-                <input type='submit' value='Save'>
-              </form>
+              <% if !owned_recipe?(message.recipe) %>
+                <form id='save' method='post' action='/recipes/<%= message.recipe_id %>/save'>
+                  <input type='hidden' name='_method' value='patch'>
+                  <input type='hidden' name='recipe_id' value='<%= message.recipe_id %>'>
+                  <input type='hidden' name='message_id' value='<%= message.id %>'>
+                  <input type='submit' value='Save'>
+                </form>
+              <% end %>
             </td>
           </tr>
         <% elsif message.content == "Friend Request" %>
           <tr>
+            <td><input type='checkbox' name='row-<%= message.id %>[]'></td>
             <td><%= message.created_at.strftime("%D~%H:%M") %></td>
             <td><a href='/friends/<%= message.sender.id %>'><%= message.sender.username %></a></td>
             <td><%= message.sender.username %> would like to be your friend!</td>
@@ -42,5 +47,5 @@
         <% end %>
       <% end %>
   </table>
-
+</form>
 </div>
