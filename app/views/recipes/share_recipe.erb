@@ -2,14 +2,14 @@
   <h1>Share Recipe</h1>
     <form method='post' action='/messages'>
       <span>Recipe: <%= @recipe.name %></span><br>
-      <span>Share with:</span> <select name='owner_id'>
+      <span>Share with:</span> <select name='message[user_id]'>
         <% @user.friends.each do |friend| %>
           <option value='<%= friend.id %>'><%= friend.username %></option>
         <% end %>
         </select><br>
-      <textarea name='content' placeholder='Personalized message'></textarea><br>
-      <input type='hidden' name='sender_id' value='<%= @user.id %>'>
-      <input type='hidden' name='recipe_id' value='<%= @recipe.id %>'>
+      <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>
+      <input type='hidden' name='message[recipe_id]' value='<%= @recipe.id %>'>
+      <input type='hidden' name='message[content]' value='Share Recipe'>
       <input type='submit' value='Share'>
     </form>
 </div>
