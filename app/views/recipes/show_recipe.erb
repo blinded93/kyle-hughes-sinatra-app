@@ -4,16 +4,26 @@
   <% if owned? %>
     <a href='/recipes/<%= @recipe.id %>/edit'><button >Edit</button></a>
     |
-    <a href='/recipes/<%= @recipe.id %>/delete'><button form="delete">Delete</button></a>
+    <form style='display: inline;' method='post' action='/recipes/<%= @recipe.id %>/delete'>
+      <input type='hidden' name='_method' value='delete'>
+      <input type='submit' value='Delete'>
+    </form>
     |
     <a href='/recipes/<%= @recipe.id %>/share'><button>Share</button></a>
+    |
+    <form style='display: inline;' method='post' action='/recipes/<%= @recipe.id %>/favorite'>
+      <input type='hidden' name='_method' value='patch'>
+      <input type='submit' value='<3'>
+    </form>
 
+  <% elsif !owned_recipe(@recipe) %>
+    <form method='post' action='/recipes/<%= @recipe.id %>/save'>
+      <input type='hidden' name='_method' value='patch'>
+      <input type='hidden' name='recipe_id' value='<%= @recipe.id %>'>
+      <input type='submit' value='Save'>
+    </form>
   <% else %>
-  <form method='post' action='/recipes/<%= @recipe.id %>/save'>
-    <input type='hidden' name='_method' value='patch'>
-    <input type='hidden' name='recipe_id' value='<%= @recipe.id %>'>
-    <input type='submit' value='Save'>
-  </form>
+    <span>You already own a recipe with this name.</span>
   <% end %>
   <ul>
     <li>Prep Time: <%= @recipe.prep_time %></li>
@@ -34,8 +44,6 @@
     </ol>
 
 
-    <form id='delete' method='post' action='/recipes/<%= @recipe.id %>/delete'>
-      <input type='hidden' name='_method' value='delete'>
-    </form>
+
 
 </div>
