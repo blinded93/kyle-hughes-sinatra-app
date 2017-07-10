@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708025211) do
+ActiveRecord::Schema.define(version: 20170708234205) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170708025211) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "owner_id"
+    t.integer "user_id"
     t.integer "sender_id"
     t.string "content"
     t.integer "recipe_id"
