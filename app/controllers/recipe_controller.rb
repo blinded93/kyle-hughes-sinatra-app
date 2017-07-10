@@ -17,8 +17,8 @@ class RecipeController < ApplicationController
   post '/recipes' do
     redirect_if_not_logged_in
 
-    @recipe = current_user.recipes.build(params)
-    if @recipe.save
+    recipe = current_user.recipes.build(params)
+    if recipe.save
       flash[:new] = "Successully saved!"
       redirect "/recipes"
     else
@@ -49,12 +49,13 @@ class RecipeController < ApplicationController
   patch '/recipes/:id/save' do
     redirect_if_not_logged_in
 
-    @user = current_user
-    @recipe = Recipe.find(params[:id]).dup
-    attrs = @recipe.attributes.to_options
-    @new_recipe = @user.recipes.create(attrs)
+    user = current_user
+    recipe = Recipe.find(params[:id]).dup
+    attrs = recipe.attributes.to_options
+    new_recipe = user.recipes.create(attrs)
+    Message.find(params[:message_id]).destroy if !params[:message_id].nil?
 
-    redirect "/recipes/#{@new_recipe.id}"
+    redirect "/recipes/#{new_recipe.id}"
   end
 
   #          -----Edit Recipe-----
@@ -74,11 +75,11 @@ class RecipeController < ApplicationController
   patch '/recipes/:id' do
     redirect_if_not_logged_in
 
-    @user = current_user
-    @recipe = Recipe.find(params[:id])
-    if @user.id == @recipe.user.id
-      @recipe = Recipe.find(params[:id])
-      if @recipe.update(params[:recipe])
+    user = current_user
+    recipe = Recipe.find(params[:id])
+    if user.id == recipe.user.id
+      recipe = Recipe.find(params[:id])
+      if recipe.update(params[:recipe])
         flash[:edit] = "Successfully saved!"
         redirect "/recipes/#{params[:id]}"
       else
@@ -103,7 +104,7 @@ class RecipeController < ApplicationController
       redirect "/recipes"
     else
       flash[:owner] = "You do not own this."
-      redirect "/recipes/#{@recipe.id}"
+      redirect "/recipes/#{recipe.id}"
     end
   end
 

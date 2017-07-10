@@ -21,26 +21,37 @@ class UserController < ApplicationController
     redirect_if_not_logged_in
 
     if params[:query].include?("@")
-      @friend = User.find_by(email: params[:query])
+      friend = User.find_by(email: params[:query])
     else
-      @friend = User.find_by(username: params[:query])
+      friend = User.find_by(username: params[:query])
     end
 
-    if !@friend.nil?
-      redirect "/friends/#{@friend.id}"
+    if !friend.nil?
+      redirect "/friends/#{friend.id}"
     else
       flash[:nonexistant] = "I could not find what you were looking for."
       redirect "/friends/find"
     end
   end
 
-  #          -----Add Friend-----
-  post '/friends/:id/add' do
+  #          -----Confirm Friend-----
+  patch '/friends/:id/confirm' do
     redirect_if_not_logged_in
 
-    friend = User.find(params[:owner_id])
-    message = friend.messages.build(params)
-    binding.pry
+    user = current_user
+    friend = User.find(params[:sender_id])
+    user.add_friend(friend)
+    Message.find(params[:message_id]).destroy
+    redirect "/friends"
+  end
+  
+  #          -----Delete Friend-----
+  delete '/friends/:id/delete' do
+    redirect_if_not_logged_in
+
+    user = current_user
+    friend = User.find(params[:id])
+    user.remove_friend(friend)
     redirect "/friends"
   end
 
