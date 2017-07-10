@@ -79,16 +79,13 @@ class RecipeController < ApplicationController
     recipe = Recipe.find(params[:id])
     if user.id == recipe.user.id
       recipe = Recipe.find(params[:id])
-      if recipe.update(params[:recipe])
-        flash[:edit] = "Successfully saved!"
-        redirect "/recipes/#{params[:id]}"
-      else
-        session[:params] = params
-        flash[:edit] = "There was a problem saving your changes. Please try again."
-        redirect "/recipes/#{params[:id]}/edit"
-      end
+      recipe.update(params[:recipe])
+      flash[:edit] = "Successfully saved!"
+
+      redirect "/recipes/#{params[:id]}"
     else
       flash[:owner] = "You do not own this."
+      
       redirect "/recipes/#{params[:id]}"
     end
   end
