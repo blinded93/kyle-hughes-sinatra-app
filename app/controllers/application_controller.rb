@@ -35,6 +35,12 @@ class ApplicationController < Sinatra::Base
     def friends?
       !!@user.friends.include?(@friend)
     end
+
+    def owned_recipe?(recipe)
+      user_recipe_names = current_user.recipes.collect{|recipe| recipe.name}
+
+      user_recipe_names.include?(recipe.name)
+    end
   end
 
 end
