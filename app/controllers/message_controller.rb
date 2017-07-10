@@ -43,7 +43,10 @@ class MessageController < ApplicationController
   delete '/messages/delete' do
     redirect_if_not_logged_in
 
+    params[:message_ids].each {|id| Message.find(id).destroy}
+    flash[:deleted] = "Message(s) deleted"
 
+    redirect "/messages"
   end
 
 end
