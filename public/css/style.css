@@ -31,6 +31,10 @@ div#content {
 }
 
 /*          -----General-----           */
+body {
+  background-color: #ffe4c2;
+}
+
 div {
   white-space: nowrap;
   display: inline-block;
