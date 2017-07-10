@@ -1,21 +1,45 @@
 <div>
   <h1>inbox</h1>
+  <button>delete selected</button>
   <table>
     <tr>
       <th>date</th>
       <th>from</th>
       <th>title</th>
     </tr>
-    <tr>
       <% @messages.each do |message| %>
-        <% if !message.recipe.nil? %>
-          <td><%= message.created_at.strftime("%D~%H:%M") %></td>
-          <td><a href='/friends/<%= message.sender.id %>'><%= message.sender.username %></a></td>
-          <td><a href='/recipes/<%= message.recipe.id %>'><%= message.recipe_name_short %></a></td>
-          <td><button form='save'>Save</button></td>
+        <% if message.content == "Share Recipe" %>
+          <tr>
+            <td>
 
+            <td><%= message.created_at.strftime("%D~%H:%M") %></td>
+            <td><a href='/friends/<%= message.sender_id %>'><%= message.sender.username %></a></td>
+            <td><a href='/recipes/<%= message.recipe_id %>'><%= message.recipe_name_short %></a></td>
+            <td>
+              <form id='save' method='post' action='/recipes/<%= message.recipe_id %>/save' <%= 'hidden' if owned_recipe(message.recipe) %>>
+                <input type='hidden' name='_method' value='patch'>
+                <input type='hidden' name='recipe_id' value='<%= message.recipe_id %>'>
+                <input type='hidden' name='message_id' value='<%= message.id %>'>
+                <input type='submit' value='Save'>
+              </form>
+            </td>
+          </tr>
+        <% elsif message.content == "Friend Request" %>
+          <tr>
+            <td><%= message.created_at.strftime("%D~%H:%M") %></td>
+            <td><a href='/friends/<%= message.sender.id %>'><%= message.sender.username %></a></td>
+            <td><%= message.sender.username %> would like to be your friend!</td>
+            <td>
+              <form id='friend' method='post' action='/friends/<%= message.sender_id %>/confirm'>
+                <input type='hidden' name='_method' value='patch'>
+                <input type='hidden' name='message_id' value='<%= message.id %>'>
+                <input type='hidden' name='sender_id' value='<%= message.sender_id %>'>
+                <input type='submit' value='Friend'>
+              </form>
+            </td>
+          </tr>
         <% end %>
-
-    </tr>
+      <% end %>
   </table>
+
 </div>
