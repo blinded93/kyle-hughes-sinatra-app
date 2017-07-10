@@ -1,6 +1,7 @@
 <div>
   <h1>inbox</h1>
   <button>delete selected</button>
+  <form
   <table>
     <tr>
       <th>date</th>
@@ -16,7 +17,7 @@
             <td><a href='/friends/<%= message.sender_id %>'><%= message.sender.username %></a></td>
             <td><a href='/recipes/<%= message.recipe_id %>'><%= message.recipe_name_short %></a></td>
             <td>
-              <form id='save' method='post' action='/recipes/<%= message.recipe_id %>/save' <%= 'hidden' if owned_recipe(message.recipe) %>>
+              <form id='save' method='post' action='/recipes/<%= message.recipe_id %>/save' <%= 'hidden' if owned_recipe?(message.recipe) %>>
                 <input type='hidden' name='_method' value='patch'>
                 <input type='hidden' name='recipe_id' value='<%= message.recipe_id %>'>
                 <input type='hidden' name='message_id' value='<%= message.id %>'>

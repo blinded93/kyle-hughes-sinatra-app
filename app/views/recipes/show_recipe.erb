@@ -16,7 +16,7 @@
       <input type='submit' value='<3'>
     </form>
 
-  <% elsif !owned_recipe(@recipe) %>
+  <% elsif !owned_recipe?(@recipe) %>
     <form method='post' action='/recipes/<%= @recipe.id %>/save'>
       <input type='hidden' name='_method' value='patch'>
       <input type='hidden' name='recipe_id' value='<%= @recipe.id %>'>
