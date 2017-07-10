@@ -1,9 +1,17 @@
 <div>
   <h3><%= @friend.username %></h3>
   <% if !friends? %>
-    <button form='add'>Add</button>
+    <form method='post' action='/messages'>
+      <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>
+      <input type='hidden' name='message[user_id]' value='<%= @friend.id %>'>
+      <input type='hidden' name='message[content]' value='Friend Request'>
+      <input type='submit' value='Add Friend'>
+    </form>
   <% else %>
-    <button>Remove</button>
+    <form method='post' action='/friends/<%= @friend.id %>/delete'>
+      <input type='hidden' name='_method' value='delete'>
+      <input type='submit' value='Remove Friend'>
+    </form>
   <% end %>
     <ul>
       <h5>Recipes</h5>
@@ -21,9 +29,5 @@
         <% end %>
     </ul>
 
-    <form id='add' method='post' action='/friends/<%= @friend.id %>/add'>
-      <input type='hidden' name='owner_id' value='<%= @friend.id %>'>
-      <input type='hidden' name='sender_id' value='<%= @user.id %>'>
-      <input type='hidden' name='content' value='Someone wants to be your friend!'>
-    </form>
+
 </div>
