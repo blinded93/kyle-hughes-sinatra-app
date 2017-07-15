@@ -1,6 +1,10 @@
 class Message <ActiveRecord::Base
   belongs_to :user
 
+  validates_presence_of :user_id, on: :create
+  validates_presence_of :sender_id, on: :create
+  validates_presence_of :content, on: :create
+  
   def sender
     User.find(self.sender_id)
   end
