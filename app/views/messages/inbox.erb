@@ -1,18 +1,25 @@
 <div class='outer content-box'>
   <h3><strong>inbox</strong></h3>
-
-    <button class='btn btn-xs btn-danger' form='delete-selected' type='submit'>delete selected</button><br><br>
-
+    <a href='/messages/new'>
+      <button class='btn btn-xs btn-info'>compose
+      </button>
+    </a> |
+    <button class='btn btn-xs btn-danger' form='delete-selected' type='submit'>delete selected
+    </button>
+    <br><br>
+    <span class='text-info'>
+      <%= flash[:message_sent] %>
+    </span>
     <span class='text-danger'>
       <%= flash[:deleted] %>
     </span>
-  <table class='table-striped' width='700px'>
+  <table class='text-center table-striped' width='700px'>
     <tr>
-      <th class='check'></th>
-      <th class='date'>date</th>
-      <th class='from'>from</th>
-      <th class='title'>title</th>
-      <th class='action'></th>
+      <th class='text-center check'></th>
+      <th class='text-center date'>date</th>
+      <th class='text-center from'>from</th>
+      <th class='text-center title'>title</th>
+      <th class='text-center action'></th>
     </tr>
       <% @messages.each do |message| %>
         <% if message.content == "share recipe" %>
@@ -36,7 +43,7 @@
           <tr>
             <td class='check'><input form ='delete-selected' type='checkbox' name='message_ids[]' value='<%= message.id %>'></td>
             <td class='date'><%= message.created_at.strftime("%D~%H:%M") %></td>
-            <td class='from'><a class='btn btn-link' href='/friends/<%= message.sender.id %>'><%= message.sender.username %></a></td>
+            <td class='from'><a class='btn btn-link' href='/friends/<%= message.sender_id %>'><%= message.sender.username %></a></td>
             <td class='title'><%= message.sender.username %> would like to be your friend!</td>
             <td class='action'>
               <form id='friend' method='post' action='/friends/<%= message.sender_id %>/confirm'>
@@ -47,6 +54,14 @@
               </form>
             </td>
           </tr>
+        <% else %>
+          <tr>
+            <td class='check'><input form='delete-selected' type='checkbox' name='message_ids[]' value='<%= message.id %>'></td>
+            <td class='date'><%= message.created_at.strftime("%D~%H:%M") %></td>
+            <td class='from'><a class='btn btn-link' href='/friends/<%= message.sender_id %>'><%= message.sender.username %></a></td>
+            <td class='title'><a class='btn btn-link' href='/messages/<%= message.id %>'><%= message.content %></a></td>
+          <td></td>
+        </tr>
         <% end %>
         <form id='delete-selected' method='post' action='/messages/delete'>
           <input type='hidden' name='_method' value='delete'>
