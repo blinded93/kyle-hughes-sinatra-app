@@ -18,11 +18,11 @@ class MessageController < ApplicationController
     message = owner.messages.create(params[:message])
 
     case params[:message][:content]
-    when "Friend Request"
-      flash[:request_sent] = "Friend request sent!"
+    when "friend request"
+      flash[:request_sent] = "friend request sent!"
       redirect "/friends/#{owner.id}"
-    when "Share Recipe"
-      flash[:recipe_shared] = "Recipe shared!"
+    when "share recipe"
+      flash[:recipe_shared] = "recipe shared!"
       redirect "/recipes/#{message.recipe_id}"
     else
       redirect "/messages"
