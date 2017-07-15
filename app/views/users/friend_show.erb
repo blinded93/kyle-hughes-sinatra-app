@@ -1,33 +1,34 @@
-<div>
-  <h3><%= @friend.username %></h3>
+<div class='outer content-box'>
+  <h3><strong><%= @friend.username %></strong></h3>
   <% if !friends? %>
     <form method='post' action='/messages'>
       <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>
       <input type='hidden' name='message[user_id]' value='<%= @friend.id %>'>
-      <input type='hidden' name='message[content]' value='Friend Request'>
-      <input type='submit' value='Add Friend'>
+      <input type='hidden' name='message[content]' value='friend request'>
+      <input class='btn btn-xs btn-info' type='submit' value='add friend'>
     </form>
   <% else %>
     <form method='post' action='/friends/<%= @friend.id %>/delete'>
       <input type='hidden' name='_method' value='delete'>
-      <input type='submit' value='Remove Friend'>
+      <input class='btn btn-xs btn-danger' type='submit' value='remove friend'>
     </form>
+    <br>
   <% end %>
-    <ul>
-      <h5>Recipes</h5>
+    <dl>
+      <dt><em>recipes</em></dt>
         <% @friend.recipes.each do |recipe| %>
-          <li><a href='/recipes/<%= recipe.id %>'><%= recipe.name %></a></li>
+          <dd><a class='btn btn-link' href='/recipes/<%= recipe.id %>'><%= recipe.name %></a></dd>
           <% end %>
 
-      <h5>Friends</h5>
+      <dt><em>friends</em></dt>
         <% @friend.friends.each do |friend| %>
           <% if friend.id == @user.id %>
-            <li><a href='/recipes'><%= friend.username %></a></li>
+            <dd><a class='btn btn-link' href='/recipes'><%= friend.username %></a></dd>
           <% else %>
-            <li><a href='/friends/<%= friend.id %>'><%= friend.username %></a></li>
+            <dd><a class='btn btn-link' href='/friends/<%= friend.id %>'><%= friend.username %></a></dd>
           <% end %>
         <% end %>
-    </ul>
+    </dl>
 
 
 </div>

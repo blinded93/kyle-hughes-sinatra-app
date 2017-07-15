@@ -1,7 +1,9 @@
-<div>
-  <h1>Find a Friend</h1>
+<div class='outer content-box'>
+  <h3><strong>find a friend</strong></h3>
   <form method='post' action='/friends'>
-    <input type='text' name='query' required><br>
-    <input type='submit' value='Find'>
+    <div class='form-group'>
+      <label for='query' hidden></label>
+      <input class='form-control input-sm' type='text' name='query' required><br>
+    <input class='btn btn-xs btn-info' type='submit' value='find'>
   </form>
 </div>
