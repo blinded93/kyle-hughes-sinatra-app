@@ -94,6 +94,14 @@ div.outer {
   font-size: 12px;
 }
 
+.text-glow-right {
+   text-shadow: 5px 0px 20px red;
+}
+
+.text-glow-left {
+   text-shadow: -5px 0px 20px red;
+}
+
 /*          -----Table-----           */
 .check {
   width: 5%;

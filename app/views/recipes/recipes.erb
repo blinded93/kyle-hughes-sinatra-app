@@ -1,9 +1,16 @@
 <div class='outer content-box'>
   <h3><strong>recipes</strong></h3>
   <a href='/recipes/new'><button class='btn btn-xs btn-success'>create recipe</button></a><br><br>
-    <ul class='list-unstyled'>
-      <% @user.recipes.each do |recipe| %>
-        <li><a class='btn btn-link' href='/recipes/<%= recipe.id %>'><%= recipe.name %></a></li>
-      <% end %>
-    </ul>
+    <dl>
+      <dt class='sm-font'>favorites</dt>
+        <% @favorites.each do |fav| %>
+          <dd><a class='btn btn-link' href='/recipes/<%= fav.id %>'><%= fav.name %></a><span class='sm-font text-danger text-glow-right'><</span><span class='sm-font text-danger text-glow-left'>3</span></dd>
+          <% end %><br>
+      <dt></dt>
+        <% @unfav.each do |recipe| %>
+          <dd><a class='btn btn-link' href='/recipes/<%= recipe.id %>'><%= recipe.name %></a>
+          </dd>
+        <% end %>
+      </dt>
+    </dl>
 </div>

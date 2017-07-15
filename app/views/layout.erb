@@ -18,6 +18,7 @@
           </div>
           <br>
           <div id='menu'>
+            <div class='sm-font text-success text-center'><%= current_user.username %></div>
             <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/messages'>inbox(<%= current_user.messages.count %>)</a></div>
             <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/recipes'>my recipes</a></div>
             <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/friends/find'>find friend</a></div>
