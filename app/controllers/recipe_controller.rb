@@ -4,6 +4,9 @@ class RecipeController < ApplicationController
     redirect_if_not_logged_in
 
     @user = current_user
+    recipes = @user.recipes.sort_by{|recipe| recipe.name}
+    @favorites = recipes.select {|recipe| recipe.favorite == 1}
+    @unfav = recipes.select {|recipe| recipe.favorite == 0}
     erb :'/recipes/recipes'
   end
 
@@ -20,6 +23,7 @@ class RecipeController < ApplicationController
     recipe = current_user.recipes.build(params)
     if recipe.save
       flash[:new] = "Successully saved!"
+
       redirect "/recipes"
     else
       flash[:new] = "There was a problem saving your recipe. Please try again."
