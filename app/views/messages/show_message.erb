@@ -1,5 +1,13 @@
-<div>
+<div class='outer content-box'>
+  <h3><strong><%= @message.content %></strong></h3>
+  <button class='btn btn-xs btn-info'>reply</button> | <button class='btn btn-xs btn-danger'>delete</button><br><br>
   <dl>
-    <dt><%= @recipe.name %></dt>
-      <dd></dd>
-</div>
+    <dt>
+      from: <%= @message.sender.username %>
+    </dt><br>
+    <div class='wrap'>
+      <dd class='wrap' style='margin-left: 40px; width: 500px;'>
+        <%= @message.composition %>
+      </dd>
+    </div>
+  </dl>
