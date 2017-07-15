@@ -1,8 +1,7 @@
 <div class='outer content-box'>
   <h3><strong>inbox</strong></h3>
-  <form id='delete-selected' method='post' action='/messages/delete'>
-    <input type='hidden' name='_method' value='delete'>
-    <input form='delete-selected' class='btn btn-xs btn-danger' type='submit' value='delete selected'><br><br>
+
+    <button class='btn btn-xs btn-danger' form='delete-selected' type='submit'>delete selected</button><br><br>
   <table class='table-striped' width='700px'>
     <tr>
       <th class='check'></th>
@@ -12,24 +11,24 @@
       <th class='action'></th>
     </tr>
       <% @messages.each do |message| %>
-        <% if message.content == "Share Recipe" %>
+        <% if message.content == "share recipe" %>
           <tr>
             <td class='check'><input form='delete-selected' type='checkbox' name='message_ids[]' value='<%= message.id %>'></td>
             <td class='date'><%= message.created_at.strftime("%D~%H:%M") %></td>
-            <td class='from'><a class='btn btn-link href='/friends/<%= message.sender.id %>'><%= message.sender.username %></a></td>
-            <td class='title'><a class='btn btn-link href='/recipes/<%= message.recipe.id %>'><%= message.recipe_name_short %></a></td>
+            <td class='from'><a class='btn btn-link' href=/friends/<%= message.sender_id %>'><%= message.sender.username %></a></td>
+            <td class='title'><a class='btn btn-link' href=/recipes/<%= message.recipe_id %>'><%= message.recipe_name_short %></a></td>
             <td class='action'>
               <% if !owned_recipe?(message.recipe) %>
                 <form id='save' method='post' action='/recipes/<%= message.recipe_id %>/save'>
                   <input form='save' type='hidden' name='_method' value='patch'>
                   <input form='save' type='hidden' name='recipe_id' value='<%= message.recipe_id %>'>
                   <input form='save' type='hidden' name='message_id' value='<%= message.id %>'>
-                  <input form='save' class='btn btn-xs btn-success' type='submit' value='Save'>
+                  <input form='save' class='align-right btn btn-xs btn-success' type='submit' value='save'>
                 </form>
               <% end %>
             </td>
           </tr>
-        <% elsif message.content == "Friend Request" %>
+        <% elsif message.content == "friend request" %>
           <tr>
             <td class='check'><input form ='delete-selected' type='checkbox' name='message_ids[]' value='<%= message.id %>'></td>
             <td class='date'><%= message.created_at.strftime("%D~%H:%M") %></td>
@@ -40,16 +39,18 @@
                 <input form='friend' type='hidden' name='_method' value='patch'>
                 <input form='friend' type='hidden' name='message_id' value='<%= message.id %>'>
                 <input form='friend' type='hidden' name='sender_id' value='<%= message.sender_id %>'>
-                <input form='friend' class='btn btn-xs btn-info' type='submit' value='Friend'>
+                <input form='friend' class='btn btn-xs btn-info' type='submit' value='friend'>
               </form>
             </td>
           </tr>
         <% end %>
-      </form>
+        <form id='delete-selected' method='post' action='/messages/delete'>
+          <input type='hidden' name='_method' value='delete'>
+        </form>
       <% end %>
   </table>
     <% if @messages.empty? %>
     <br>
-      <span>You have no messages.</span>
+      <span>you have no messages.</span>
     <% end %>
 </div>
