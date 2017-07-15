@@ -1,8 +1,16 @@
-<div class='inner'>
-  <h1>Login</h1>
-    <form method='post' action='/login'>
-      <input type='text' name='user' placeholder='Username or Email'><br>
-      <input type='password' name='password' placeholder='Password'><br>
-      <input type='submit' value='Login'>
-    </form>
+<div class='outer'>
+  <div class='inner'>
+    <h2 class='text-center'>login</h2>
+      <form method='post' action='/login'>
+        <div class='form-group'>
+          <label for='user'>username or email</label>
+          <input id='user' class='form-control input-sm' type='text' name='user' placeholder='username or email'>
+        </div><br>
+        <div class='form-group'>
+          <label for='password'>password</label>
+          <input id='password' class='form-control input-sm' type='password' name='password' placeholder='password'>
+        </div><br>
+        <input class='center-block btn btn-xs btn-primary' type='submit' value='login'>
+      </form>
+  </div>
 </div>
