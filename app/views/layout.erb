@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="/css/style.css" type='text/css'>
     <meta charset="utf-8">
-    <title></title>
+    <title>esculent methods</title>
   </head>
     <% if logged_in? %>
       <body class='body-bgc'>
@@ -18,12 +18,23 @@
           </div>
           <br>
           <div id='menu'>
-            <div class='sm-font text-success text-center'><%= current_user.username %></div>
-            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/messages'>inbox(<%= current_user.messages.count %>)</a></div>
-            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/recipes'>my recipes</a></div>
-            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/friends/find'>find friend</a></div>
-            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/friends'>friends</a></div>
-            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/logout'>logout</a></div>
+            <div class='sm-font text-success text-center'><%= current_user.username %>
+            </div>
+            <div class='menu'>
+              <a class='btn btn-xs btn-block btn-primary' href='/messages'>inbox(<%= current_user.messages.count %>)</a>
+            </div>
+            <div class='menu'>
+              <a class='btn btn-xs btn-block btn-primary' href='/recipes'>my recipes</a>
+            </div>
+            <div class='menu'>
+              <a class='btn btn-xs btn-block btn-primary' href='/friends/find'>find friend</a>
+            </div>
+            <div class='menu'>
+              <a class='btn btn-xs btn-block btn-primary' href='/friends'>friends</a>
+            </div>
+            <div class='menu'>
+              <a class='btn btn-xs btn-block btn-primary' href='/logout'>logout</a>
+            </div>
           </div>
           <div id='content'>
             <%= yield %>

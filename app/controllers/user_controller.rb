@@ -27,9 +27,11 @@ class UserController < ApplicationController
     end
 
     if !friend.nil?
+
       redirect "/friends/#{friend.id}"
     else
       flash[:nonexistant] = "i could not find what you were looking for."
+
       redirect "/friends/find"
     end
   end
@@ -41,7 +43,9 @@ class UserController < ApplicationController
     user = current_user
     friend = User.find(params[:sender_id])
     user.add_friend(friend)
+
     Message.find(params[:message_id]).destroy
+
     redirect "/friends"
   end
 
@@ -52,6 +56,7 @@ class UserController < ApplicationController
     user = current_user
     friend = User.find(params[:id])
     user.remove_friend(friend)
+
     redirect "/friends"
   end
 
@@ -99,6 +104,7 @@ class UserController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      
       redirect "/recipes"
     else
       flash[:login] = "There was a problem logging in, please try again."
@@ -111,7 +117,7 @@ class UserController < ApplicationController
   get '/logout' do
     session.clear
     flash[:logout] = "you have been logged out."
-    
+
     redirect "/"
   end
 

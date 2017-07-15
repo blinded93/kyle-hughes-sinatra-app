@@ -21,6 +21,7 @@ class RecipeController < ApplicationController
     redirect_if_not_logged_in
 
     recipe = current_user.recipes.build(params)
+
     if recipe.save
       flash[:new] = "successully saved!"
 
@@ -55,8 +56,10 @@ class RecipeController < ApplicationController
 
     recipe = Recipe.find(params[:id]).dup
     attrs = recipe.attributes.to_options
-    new_recipe = current_user.recipes.create(attrs)
+    new_recipe = current_user.recipes.build(attrs)
     new_recipe.favorite = 0
+    new_recipe.save
+
     Message.find(params[:message_id]).destroy if !params[:message_id].nil?
     flash[:save] = "recipe saved!"
 
@@ -69,10 +72,12 @@ class RecipeController < ApplicationController
 
     @user = current_user
     @recipe = Recipe.find(params[:id])
+
     if owned?
       erb :'/recipes/edit_recipe'
     else
       flash[:not_owner] = "you do not own this."
+
       redirect "/recipes/#{params[:id]}"
     end
   end
@@ -80,10 +85,9 @@ class RecipeController < ApplicationController
   patch '/recipes/:id' do
     redirect_if_not_logged_in
 
-    user = current_user
-    recipe = Recipe.find(params[:id])
-    if user.id == recipe.user.id
-      recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
+
+    if owned?
       recipe.update(params[:recipe])
       flash[:edit] = "edit saved!"
 
@@ -95,10 +99,12 @@ class RecipeController < ApplicationController
     end
   end
 
+  #          -----Favorite Recipe-----
   patch '/recipes/:id/favorite' do
     redirect_if_not_logged_in
 
     @recipe = Recipe.find(params[:id])
+
     if owned? && @recipe.favorite == 0
       @recipe.favorite = 1
       @recipe.save
@@ -111,6 +117,7 @@ class RecipeController < ApplicationController
       redirect "/recipes/#{@recipe.id}"
     else
       flash[:not_owner] = "you do not own this."
+
       redirect "/recipes/#{@recipe.id}"
     end
   end
@@ -120,12 +127,15 @@ class RecipeController < ApplicationController
     redirect_if_not_logged_in
 
     @recipe = Recipe.find(params[:id])
+
     if owned?
       @recipe.destroy
       flash[:delete] = "recipe deleted."
+
       redirect "/recipes"
     else
       flash[:not_owner] = "you do not own this."
+      
       redirect "/recipes/#{recipe.id}"
     end
   end

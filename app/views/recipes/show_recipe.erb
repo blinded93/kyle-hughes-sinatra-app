@@ -2,14 +2,20 @@
   <h3><strong><%= @recipe.name %></strong></h3>
 
   <% if owned? %>
-    <a href='/recipes/<%= @recipe.id %>/edit'><button class='btn btn-xs btn-success'>edit</button></a>
+    <a href='/recipes/<%= @recipe.id %>/edit'>
+      <button class='btn btn-xs btn-success'>edit
+      </button>
+    </a>
     |
     <form style='display: inline;' method='post' action='/recipes/<%= @recipe.id %>/delete'>
       <input type='hidden' name='_method' value='delete'>
       <input class='btn btn-xs btn-danger' type='submit' value='delete'>
     </form>
     |
-    <a href='/recipes/<%= @recipe.id %>/share'><button class='btn btn-xs btn-success'>share</button></a>
+    <a href='/recipes/<%= @recipe.id %>/share'>
+      <button class='btn btn-xs btn-success'>share
+      </button>
+    </a>
     |
     <form style='display: inline;' method='post' action='/recipes/<%= @recipe.id %>/favorite'>
       <input type='hidden' name='_method' value='patch'>
@@ -19,7 +25,8 @@
         <input class='btn btn-xs' type='submit' value='<3'>
       <% end %>
     </form>
-    <br><br>
+    <br>
+    <br>
 
   <% elsif !owned_recipe?(@recipe) %>
     <form method='post' action='/recipes/<%= @recipe.id %>/save'>
@@ -27,6 +34,7 @@
       <input type='hidden' name='recipe_id' value='<%= @recipe.id %>'>
       <input class='btn btn-xs btn-success' type='submit' value='save'>
     </form>
+
   <% else %>
     <p class='text-warning'>you already own a recipe with this name</p>
   <% end %>
@@ -34,7 +42,8 @@
       <%= flash[:edit] %>
       <%= flash[:save] %>
       <%= flash[:recipe_shared] %>
-    </span><span class='text-danger'>
+    </span>
+    <span class='text-danger'>
       <%= flash[:not_owner] %>
     </span>
   <ul style='list-style-type: none;'>
@@ -56,8 +65,4 @@
         <% end %>
       </div>
     </ol>
-
-
-
-
 </div>

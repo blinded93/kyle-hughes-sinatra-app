@@ -8,15 +8,19 @@
           <option value='<%= friend.id %>'><%= friend.username %></option>
         <% end %>
       </select>
-    </div><br>
+    </div>
+    <br>
     <div class-'form-group'>
       <label for='subject'>subject</label><br>
       <input id='subject' class='form-control input-sm width' type='text' name='message[content]' placeholder='subject' required>
-    </div><br>
+    </div>
+    <br>
     <div class='from-group'>
       <label for='message'>message</label>
       <textarea id='message' class='size form-control input-sm' name='message[composition]' placeholder='message' required></textarea>
-    </div><br><br>
+    </div>
+    <br>
+    <br>
     <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>
     <input class='btn btn-xs btn-info' type='submit' value='send'>
   </form>
