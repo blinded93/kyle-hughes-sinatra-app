@@ -135,7 +135,7 @@ class RecipeController < ApplicationController
       redirect "/recipes"
     else
       flash[:not_owner] = "you do not own this."
-      
+
       redirect "/recipes/#{recipe.id}"
     end
   end
