@@ -1,6 +1,13 @@
 <div class='outer content-box'>
   <h3><strong>recipes</strong></h3>
-  <a href='/recipes/new'><button class='btn btn-xs btn-success'>create recipe</button></a><br><br>
+  <a href='/recipes/new'><button class='btn btn-xs btn-success'>create recipe</button></a>
+  <span class='text-success'>
+    <%= flash[:new] %>
+  </span>
+  <span class='text-danger'>
+    <%= flash[:delete] %>
+  </span>
+  <br><br>
     <dl>
       <dt class='sm-font'>favorites</dt>
         <% @favorites.each do |fav| %>

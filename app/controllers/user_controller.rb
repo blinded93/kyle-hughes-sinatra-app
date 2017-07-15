@@ -29,7 +29,7 @@ class UserController < ApplicationController
     if !friend.nil?
       redirect "/friends/#{friend.id}"
     else
-      flash[:nonexistant] = "I could not find what you were looking for."
+      flash[:nonexistant] = "i could not find what you were looking for."
       redirect "/friends/find"
     end
   end
@@ -78,7 +78,7 @@ class UserController < ApplicationController
       session[:user_id] = user.id
       redirect "/recipes"
     else
-      flash[:signup] = "There seems to have been a problem creating your account. Please try again."
+      flash[:signup] = "there seems to have been a problem creating your account. please try again."
 
       redirect "/signup"
     end
@@ -110,6 +110,8 @@ class UserController < ApplicationController
   #      -----Log Out-----
   get '/logout' do
     session.clear
+    flash[:logout] = "you have been logged out."
+    
     redirect "/"
   end
 

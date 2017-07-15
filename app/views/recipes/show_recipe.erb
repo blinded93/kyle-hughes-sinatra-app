@@ -27,11 +27,16 @@
       <input type='hidden' name='recipe_id' value='<%= @recipe.id %>'>
       <input class='btn btn-xs btn-success' type='submit' value='save'>
     </form>
-    <br>
   <% else %>
-    <span>you already own a recipe with this name</span>
-    <br><br>
+    <p class='text-warning'>you already own a recipe with this name</p>
   <% end %>
+    <span class='text-center text-success'>
+      <%= flash[:edit] %>
+      <%= flash[:save] %>
+      <%= flash[:recipe_shared] %>
+    </span><span class='text-danger'>
+      <%= flash[:not_owner] %>
+    </span>
   <ul style='list-style-type: none;'>
     <li>Prep Time: <%= @recipe.prep_time %></li>
     <li>Cook Time: <%= @recipe.cook_time %></li>

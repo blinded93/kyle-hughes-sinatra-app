@@ -1,5 +1,8 @@
 <div class='outer content-box'>
   <h3><strong>find a friend</strong></h3>
+  <span class='text-warning'>
+    <%= flash[:nonexistant] %>
+  </span>
   <form method='post' action='/friends'>
     <div class='form-group'>
       <label for='query' hidden></label>

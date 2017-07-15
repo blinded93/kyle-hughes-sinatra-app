@@ -22,11 +22,11 @@ class RecipeController < ApplicationController
 
     recipe = current_user.recipes.build(params)
     if recipe.save
-      flash[:new] = "Successully saved!"
+      flash[:new] = "successully saved!"
 
       redirect "/recipes"
     else
-      flash[:new] = "There was a problem saving your recipe. Please try again."
+      flash[:new] = "there was a problem saving your recipe. please try again."
 
       redirect "/recipes/new"
     end
@@ -56,7 +56,9 @@ class RecipeController < ApplicationController
     recipe = Recipe.find(params[:id]).dup
     attrs = recipe.attributes.to_options
     new_recipe = current_user.recipes.create(attrs)
+    new_recipe.favorite = 0
     Message.find(params[:message_id]).destroy if !params[:message_id].nil?
+    flash[:save] = "recipe saved!"
 
     redirect "/recipes/#{new_recipe.id}"
   end
@@ -67,10 +69,10 @@ class RecipeController < ApplicationController
 
     @user = current_user
     @recipe = Recipe.find(params[:id])
-    if @user && owned?
+    if owned?
       erb :'/recipes/edit_recipe'
     else
-      flash[:not_owner] = "You do not own this."
+      flash[:not_owner] = "you do not own this."
       redirect "/recipes/#{params[:id]}"
     end
   end
@@ -83,11 +85,11 @@ class RecipeController < ApplicationController
     if user.id == recipe.user.id
       recipe = Recipe.find(params[:id])
       recipe.update(params[:recipe])
-      flash[:edit] = "Successfully saved!"
+      flash[:edit] = "edit saved!"
 
       redirect "/recipes/#{params[:id]}"
     else
-      flash[:owner] = "You do not own this."
+      flash[:not_owner] = "you do not own this."
 
       redirect "/recipes/#{params[:id]}"
     end
@@ -99,20 +101,16 @@ class RecipeController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if owned? && @recipe.favorite == 0
       @recipe.favorite = 1
-      if @recipe.save
-        redirect "/recipes/#{@recipe.id}"
-      else
-        flash[:problem] = "There seems to have been a problem."
-      end
+      @recipe.save
+
+      redirect "/recipes/#{@recipe.id}"
     elsif owned? && @recipe.favorite == 1
       @recipe.favorite = 0
-      if @recipe.save
-        redirect "/recipes/#{@recipe.id}"
-      else
-        fash[:problem] = "There seems to have been a problem."
-      end
+      @recipe.save
+
+      redirect "/recipes/#{@recipe.id}"
     else
-      flash[:owner] = "You do not own this."
+      flash[:not_owner] = "you do not own this."
       redirect "/recipes/#{@recipe.id}"
     end
   end
@@ -124,10 +122,10 @@ class RecipeController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if owned?
       @recipe.destroy
-      flash[:delete] = "Recipe deleted."
+      flash[:delete] = "recipe deleted."
       redirect "/recipes"
     else
-      flash[:owner] = "You do not own this."
+      flash[:not_owner] = "you do not own this."
       redirect "/recipes/#{recipe.id}"
     end
   end

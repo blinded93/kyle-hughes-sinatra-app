@@ -2,7 +2,7 @@
   <h3><strong>friends</strong></h3>
     <ul style='list-style-type: none;'>
       <% @user.friends.each do |friend| %>
-        <li><a href='/friends/<%= friend.id %>'><%= friend.username %></a></li>
+        <li><a href='/friends/<%= friend.id %>'><%= friend.username %></a></li><br>
       <% end %>
     </ul>
 </div>

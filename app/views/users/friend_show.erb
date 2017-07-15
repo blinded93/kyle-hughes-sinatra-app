@@ -1,5 +1,8 @@
 <div class='outer content-box'>
   <h3><strong><%= @friend.username %></strong></h3>
+  <span class='text-info'>
+    <%= flash[:request_sent] %>
+  </span>
   <% if !friends? %>
     <form method='post' action='/messages'>
       <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>

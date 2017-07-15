@@ -2,6 +2,10 @@
   <h3><strong>inbox</strong></h3>
 
     <button class='btn btn-xs btn-danger' form='delete-selected' type='submit'>delete selected</button><br><br>
+
+    <span class='text-danger'>
+      <%= flash[:deleted] %>
+    </span>
   <table class='table-striped' width='700px'>
     <tr>
       <th class='check'></th>

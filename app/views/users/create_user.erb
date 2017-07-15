@@ -1,6 +1,9 @@
 <div class='outer'>
   <div class='inner'>
     <h2 class='text-center'>create account</h2>
+    <span class='text-danger'>
+      <%= flash[:signup] %>
+    </span>
     <form class='user' method='post' action='/signup'>
       <div class='form-group'>
         <label for='username'>username</label><br>
