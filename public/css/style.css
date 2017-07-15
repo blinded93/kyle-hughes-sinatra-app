@@ -131,11 +131,12 @@ label {
 input.center-button {
   align: middle;
 }
+
 input.width {
   width: 500px;
 }
 
-textarea#directions {
+textarea.size {
   resize: none;
   overflow: auto;
   width:500px;

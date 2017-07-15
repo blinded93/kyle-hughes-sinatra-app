@@ -2,7 +2,6 @@
     <h3><strong>create recipe</strong></h3>
       <p class='text-danger text-center'><%= flash[:new] %></p>
     <form method='post' action='/recipes'>
-      <div>
         <div class='form-group'>
           <label for='recipe_name'>recipe name</label><br>
           <input id='recipe_name' class='form-control input-sm width' type='text' name='name' placeholder='recipe name'>
@@ -29,9 +28,8 @@
         </div><br>
         <div class='form-group'>
           <label for='directions'>directions</label>
-          <textarea id='directions' class='form-control input-sm' name='directions' rows='' placeholder='separate by line'></textarea>
+          <textarea id='directions' class='size form-control input-sm' name='directions' placeholder='separate by line'></textarea>
         </div><br>
         <input class='btn btn-xs btn-success' type='submit' value='create recipe'>
-      </div>
     </form>
 </div>
