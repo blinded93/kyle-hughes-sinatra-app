@@ -1,15 +1,22 @@
-<div>
-  <h1>Share Recipe</h1>
+<div class='outer content-box'>
+  <h3><strong>share recipe</strong></h3>
     <form method='post' action='/messages'>
-      <span>Recipe: <%= @recipe.name %></span><br>
-      <span>Share with:</span> <select name='message[user_id]'>
-        <% @user.friends.each do |friend| %>
-          <option value='<%= friend.id %>'><%= friend.username %></option>
-        <% end %>
-        </select><br>
-      <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>
-      <input type='hidden' name='message[recipe_id]' value='<%= @recipe.id %>'>
-      <input type='hidden' name='message[content]' value='Share Recipe'>
-      <input type='submit' value='Share'>
+      <div>
+        <div class='form-group'>
+          <em>recipe:</em> <span class='sm-font'><strong><%= @recipe.name %></strong></span><br>
+        </div><br>
+        <div class='form-group'>
+          <label>share with: </label><br>
+          <select class='form-control input-sm' name='message[user_id]'>
+            <% @user.friends.each do |friend| %>
+              <option value='<%= friend.id %>'><%= friend.username %></option>
+              <% end %>
+            </select>
+        </div><br>
+        <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>
+        <input type='hidden' name='message[recipe_id]' value='<%= @recipe.id %>'>
+        <input type='hidden' name='message[content]' value='share recipe'>
+        <input class='btn btn-success btn-xs' type='submit' value='share'>
+      </div>
     </form>
 </div>
