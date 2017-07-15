@@ -23,7 +23,7 @@ class RecipeController < ApplicationController
       redirect "/recipes"
     else
       flash[:new] = "There was a problem saving your recipe. Please try again."
-      session[:params] = params
+
       redirect "/recipes/new"
     end
   end
@@ -49,10 +49,9 @@ class RecipeController < ApplicationController
   patch '/recipes/:id/save' do
     redirect_if_not_logged_in
 
-    user = current_user
     recipe = Recipe.find(params[:id]).dup
     attrs = recipe.attributes.to_options
-    new_recipe = user.recipes.create(attrs)
+    new_recipe = current_user.recipes.create(attrs)
     Message.find(params[:message_id]).destroy if !params[:message_id].nil?
 
     redirect "/recipes/#{new_recipe.id}"
@@ -85,8 +84,32 @@ class RecipeController < ApplicationController
       redirect "/recipes/#{params[:id]}"
     else
       flash[:owner] = "You do not own this."
-      
+
       redirect "/recipes/#{params[:id]}"
+    end
+  end
+
+  patch '/recipes/:id/favorite' do
+    redirect_if_not_logged_in
+
+    @recipe = Recipe.find(params[:id])
+    if owned? && @recipe.favorite == 0
+      @recipe.favorite = 1
+      if @recipe.save
+        redirect "/recipes/#{@recipe.id}"
+      else
+        flash[:problem] = "There seems to have been a problem."
+      end
+    elsif owned? && @recipe.favorite == 1
+      @recipe.favorite = 0
+      if @recipe.save
+        redirect "/recipes/#{@recipe.id}"
+      else
+        fash[:problem] = "There seems to have been a problem."
+      end
+    else
+      flash[:owner] = "You do not own this."
+      redirect "/recipes/#{@recipe.id}"
     end
   end
 
