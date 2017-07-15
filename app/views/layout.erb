@@ -10,26 +10,26 @@
   </head>
     <% if logged_in? %>
       <body class='body-bgc'>
-        <div style='white-space: nowrap'>
+        <div class='container-fluid' style='white-space: nowrap'>
           <div id='white-box'>
           </div>
           <div id='title'>
-            <h1>esculent methods - <%= current_user.username %></h1>
+            <h1 class='title'>esculent methods</h1>
           </div>
           <br>
           <div id='menu'>
-            <div class='menu body-bgc'><a href='/messages'>inbox(<%= current_user.messages.count %>)</a></div>
-            <div class='menu'><a href='/recipes'>my recipes</a></div>
-            <div class='menu'><a href='/friends/find'>find friend</a></div>
-            <div class='menu'><a href='/friends'>friends</a></div>
-            <div class='menu'><a href='/logout'>logout</a></div>
+            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/messages'>inbox(<%= current_user.messages.count %>)</a></div>
+            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/recipes'>my recipes</a></div>
+            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/friends/find'>find friend</a></div>
+            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/friends'>friends</a></div>
+            <div class='menu'><a class='btn btn-xs btn-block btn-primary' href='/logout'>logout</a></div>
           </div>
           <div id='content'>
             <%= yield %>
           </div>
         </div>
     <% else %>
-      <body class='body-bgc'>
+      <body class='user'>
         <div class='outer'>
           <%= yield %>
         </div>
