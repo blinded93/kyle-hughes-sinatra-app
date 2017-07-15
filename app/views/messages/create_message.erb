@@ -1,0 +1,23 @@
+<div class='out content-box'>
+  <h3><strong>new message</strong></h3>
+  <form method='post' action='/messages'>
+    <div class='form-group'>
+      <label>To: </label><br>
+      <select class='form-control input-sm' name='message[user_id]'>
+        <% @user.friends.each do |friend| %>
+          <option value='<%= friend.id %>'><%= friend.username %></option>
+        <% end %>
+      </select>
+    </div><br>
+    <div class-'form-group'>
+      <label for='subject'>subject</label><br>
+      <input id='subject' class='form-control input-sm width' type='text' name='message[content]' placeholder='subject' required>
+    </div><br>
+    <div class='from-group'>
+      <label for='message'>message</label>
+      <textarea id='message' class='size form-control input-sm' name='message[composition]' placeholder='message' required></textarea>
+    </div><br><br>
+    <input type='hidden' name='message[sender_id]' value='<%= @user.id %>'>
+    <input class='btn btn-xs btn-info' type='submit' value='send'>
+  </form>
+</div>
