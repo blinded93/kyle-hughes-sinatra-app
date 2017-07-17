@@ -16,7 +16,7 @@ class MessageController < ApplicationController
     friend = User.find(params[:message][:sender_id])
     owner = User.find(params[:message][:user_id])
     message = owner.messages.create(params[:message])
-    
+
     case params[:message][:content]
     when "friend request"
       flash[:request_sent] = "friend request sent!"
@@ -35,6 +35,15 @@ class MessageController < ApplicationController
     redirect_if_not_logged_in
 
     @user = current_user
+    erb :'/messages/create_message'
+  end
+
+  #          -----Reply-----
+  get '/messages/:id/reply' do
+    redirect_if_not_logged_in
+
+    @user = current_user
+    @recipient = User.find(params[:id])
     erb :'/messages/create_message'
   end
 

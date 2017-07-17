@@ -1,6 +1,12 @@
 <div class='outer content-box'>
   <h3><strong><%= @message.content %></strong></h3>
-    <button class='btn btn-xs btn-info'>reply</button> | <button class='btn btn-xs btn-danger'>delete</button>
+    <a href='/messages/<%= @message.sender.id %>/reply'>
+      <button class='btn btn-xs btn-info'>reply</button></a> |
+    <form style='display: inline;' method='post' action='/messages/delete'>
+      <input type='hidden' name='_method' value='delete'>
+      <input type='hidden' name='message_ids[]' value='<%= @message.id %>'>
+      <input class='btn btn-xs btn-danger' type='submit' value='delete'>
+    </form>
     <br>
     <br>
   <dl>

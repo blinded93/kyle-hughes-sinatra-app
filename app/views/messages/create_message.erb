@@ -2,13 +2,19 @@
   <h3><strong>new message</strong></h3>
   <form method='post' action='/messages'>
     <div class='form-group'>
-      <label>To: </label><br>
-      <select class='form-control input-sm' name='message[user_id]'>
-        <% @user.friends.each do |friend| %>
-          <option value='<%= friend.id %>'><%= friend.username %></option>
-        <% end %>
-      </select>
-    </div>
+      <label>to: </label><br>
+      <% if !@recipient.nil? %>
+        <strong class='text-primary'><%= @recipient.username %></strong>
+          <input type='hidden' name='message[user_id]' value='<%= @recipient.id %>'>
+        </div>
+      <% else %>
+        <select class='form-control input-sm' name='message[user_id]'>
+          <% @user.friends.each do |friend| %>
+            <option value='<%= friend.id %>'><%= friend.username %></option>
+          <% end %>
+        </select>
+        </div>
+      <% end %>
     <br>
     <div class-'form-group'>
       <label for='subject'>subject</label><br>
