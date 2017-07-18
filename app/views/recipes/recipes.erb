@@ -4,27 +4,22 @@
     <button class='btn btn-xs btn-success'>create recipe
     </button>
   </a>
+  <br>
   <span class='text-success'>
     <%= flash[:new] %>
   </span>
   <span class='text-danger'>
     <%= flash[:delete] %>
   </span>
-  <br>
-  <br>
     <dl>
-      <dt class='sm-font'>favorites</dt>
-        <% @favorites.each do |fav| %>
-          <dd><a class='btn btn-link' href='/recipes/<%= fav.id %>'><%= fav.name %></a>
-            <span class='sm-font text-danger text-glow-right'><</span>
-            <span class='sm-font text-danger text-glow-left'>3</span></dd>
-          <% end %>
-          <br>
       <dt></dt>
-        <% @unfav.each do |recipe| %>
+        <% @recipes.each do |recipe| %>
           <dd><a class='btn btn-link' href='/recipes/<%= recipe.id %>'><%= recipe.name %></a>
-          </dd>
+            <% if recipe.favorite == 1 %>
+              <span class='sm-font text-danger text-glow-right'><</span>
+              <span class='sm-font text-danger text-glow-left'>3</span></dd>
+            <% end %>
         <% end %>
-      </dt>
+      <br>
     </dl>
 </div>

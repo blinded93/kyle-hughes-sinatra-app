@@ -21,7 +21,7 @@
       <input type='hidden' name='_method' value='patch'>
       <% if @recipe.favorite == 1 %>
         <input class='btn btn-xs btn-danger' type='submit' value='<3'>
-      <% elsif @recipe.favorite == 0 %>
+      <% elsif @recipe.favorite == 0 || @recipe.favorite.nil? %>
         <input class='btn btn-xs' type='submit' value='<3'>
       <% end %>
     </form>

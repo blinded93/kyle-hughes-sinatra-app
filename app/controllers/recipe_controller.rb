@@ -4,9 +4,7 @@ class RecipeController < ApplicationController
     redirect_if_not_logged_in
 
     @user = current_user
-    recipes = @user.recipes.sort_by{|recipe| recipe.name}
-    @favorites = recipes.select {|recipe| recipe.favorite == 1}
-    @unfav = recipes.select {|recipe| recipe.favorite == 0}
+    @recipes = @user.recipes.sort_by{|recipe| recipe.name}
     erb :'/recipes/recipes'
   end
 
@@ -21,7 +19,7 @@ class RecipeController < ApplicationController
     redirect_if_not_logged_in
 
     recipe = current_user.recipes.build(params)
-
+    recipe.favorite == 0
     if recipe.save
       flash[:new] = "successully saved!"
 
@@ -88,7 +86,7 @@ class RecipeController < ApplicationController
     @recipe = Recipe.find(params[:id])
 
     if owned?
-      recipe.update(params[:recipe])
+      @recipe.update(params[:recipe])
       flash[:edit] = "edit saved!"
 
       redirect "/recipes/#{params[:id]}"
@@ -105,7 +103,7 @@ class RecipeController < ApplicationController
 
     @recipe = Recipe.find(params[:id])
 
-    if owned? && @recipe.favorite == 0
+    if owned? && @recipe.favorite == 0 || @recipe.favorite.nil?
       @recipe.favorite = 1
       @recipe.save
 
