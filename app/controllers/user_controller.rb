@@ -12,8 +12,6 @@ class UserController < ApplicationController
   get '/friends/find' do
     redirect_if_not_logged_in
 
-    @user = current_user
-    @users = User.all
     erb :'/users/friend_find'
   end
 
@@ -104,7 +102,7 @@ class UserController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      
+
       redirect "/recipes"
     else
       flash[:login] = "There was a problem logging in, please try again."

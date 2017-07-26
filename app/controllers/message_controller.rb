@@ -51,7 +51,6 @@ class MessageController < ApplicationController
   get '/messages/:id' do
     redirect_if_not_logged_in
 
-    @user = current_user
     @message = Message.find(params[:id])
     erb :'/messages/show_message'
   end

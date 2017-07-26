@@ -106,18 +106,13 @@ class RecipeController < ApplicationController
     if owned? && @recipe.favorite == 0 || @recipe.favorite.nil?
       @recipe.favorite = 1
       @recipe.save
-
-      redirect "/recipes/#{@recipe.id}"
     elsif owned? && @recipe.favorite == 1
       @recipe.favorite = 0
       @recipe.save
-
-      redirect "/recipes/#{@recipe.id}"
     else
       flash[:not_owner] = "you do not own this."
-
-      redirect "/recipes/#{@recipe.id}"
     end
+    redirect "/recipes/#{@recipe.id}"
   end
 
   #          -----Delete Recipe-----
